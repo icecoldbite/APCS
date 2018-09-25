@@ -1,5 +1,6 @@
 //This program will output an average temperature and the days above said average given a imputed number of temperature data values
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class JacksonDerbyWeatherAnalysisV2 {
@@ -19,8 +20,7 @@ public class JacksonDerbyWeatherAnalysisV2 {
         int daysOver = calculateDaysOverAvgTemp(days, tempLog, avgTemp);
 
         //Step 5: Print out average temperature and days above average
-        System.out.println("Average temp = " + Math.round(avgTemp * 10) / 10.0);
-        System.out.println(daysOver + " days were above average.");
+        printInfo(avgTemp, daysOver, tempLog);
 
     }
 
@@ -51,6 +51,75 @@ public class JacksonDerbyWeatherAnalysisV2 {
             }
         }
         return daysOver;
+    }
+
+    public static int[] findTwoSmallest(int[] tempLog) {
+        int first = Integer.MAX_VALUE;
+        int second = Integer.MAX_VALUE;
+
+        if (tempLog.length < 2)  //Check to see if there are in fact two temperatures, and if not, set each min to the only given temperature
+        {
+            first = tempLog[0];
+            second = first;
+        }
+
+
+        for (int i = 0; i < tempLog.length ; i ++) {    // If current element is smaller than first then update both first and second
+            if (tempLog[i] < first) {
+                second = first;
+                first = tempLog[i];
+            }
+
+            else if (tempLog[i] < second && tempLog[i] != first) {  // If there is a value between first and second then update second
+                second = tempLog[i];
+            }
+        }
+
+        int[] smallestValues = new int[2];    //Create the array to be returned with the two integer values
+        smallestValues[0] = first;
+        smallestValues[1] = second;
+
+        return smallestValues;
+    }
+
+    public static int[] findTwoBiggest(int[] tempLog) {
+        int first = Integer.MIN_VALUE;
+        int second = Integer.MIN_VALUE;
+
+        if (tempLog.length < 2)  //Check to see if there are in fact two temperatures, and if not, set each min to the only given temperature
+        {
+            first = tempLog[0];
+            second = first;
+        }
+
+
+        for (int i = 0; i < tempLog.length ; i ++) {    // If current element is bigger than first then update both first and second
+            if (tempLog[i] > first) {
+                second = first;
+                first = tempLog[i];
+            }
+
+            else if (tempLog[i] < second && tempLog[i] != first) {  // If there is a value between first and second then update second
+                second = tempLog[i];
+            }
+        }
+
+        int[] smallestValues = new int[2];    //Create the array to be returned with the two integer values
+        smallestValues[0] = first;
+        smallestValues[1] = second;
+
+        return smallestValues;
+    }
+
+    public static void printInfo(double avgTemp, int daysOver, int[] tempLog) {
+        System.out.println("Average temp = " + Math.round(avgTemp * 10) / 10.0);
+        System.out.println(daysOver + " days were above average.");
+        System.out.println("");
+        System.out.println("Temperatures: " + Arrays.toString(tempLog));
+        int[] smallestValues = findTwoSmallest(tempLog);
+        System.out.println("Two coldest days: " + smallestValues[0] + ", " + smallestValues[1]);
+        int[] biggestValues = findTwoBiggest(tempLog);
+        System.out.println("Two hottest days: " + biggestValues[0] + ", " + biggestValues[1]);
     }
 
 }
