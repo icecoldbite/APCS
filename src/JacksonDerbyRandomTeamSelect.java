@@ -30,7 +30,7 @@ public class JacksonDerbyRandomTeamSelect {
                 boolean numberAlreadyChosen = false;
                 for (int i = 0; i <= teamsChosen.length - 1; i++) {
                     numberAlreadyChosen = (tempTeam == teamsChosen[i]);
-                    System.out.println(teamsChosen[i]);
+                    System.out.println(teamsChosen[i])
                 }
 
                 System.out.println(numberAlreadyChosen);
