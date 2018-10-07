@@ -1,80 +1,65 @@
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class JacksonDerbyRandomHatV2 {
+    public static int teamCountChosen = 0;     //Initializes class variable to keep track of number of teams already chosen(to prevent out of bounds errors)
 
     public static void main(String[] args) {
 
-        //Step 1: Initialize
-        int[] teamsChosen = new int[8];
-        int[] team1 = new int[2];
-        int[] team2 = new int[2];
-        int[] team3 = new int[2];
-        int[] team4 = new int[2];
-        int pairCount = 1;
+        //Step 1: Ask for number of competing teams and create an array to keep track of the teams based on the number of teams it needs to pair
+        int numberOfTeams = requestNumberOfTeams();
+        int[] teamsChosen = new int[numberOfTeams];
 
-        int teamCountChosen = 0;
-        //Step 2: Repeatedly fill pairs until the four pairs have been filled out
-        while(team4[1] == 0) {
+        //Step 2: Repeatedly fill list of chosen teams until the list has been filled out using randomly generated numbers corresponding to the teams competing
+        while(teamsChosen[numberOfTeams - 1] == 0) {
+            fillTeamArray(teamsChosen, numberOfTeams);
+        }
 
-            //Step 3: Repeat further steps until pair is filled(two numbers)
-            int fillCount = 0;
+        //Step 3: Print team pairings
 
+        printTeamPairs(teamsChosen, numberOfTeams);
 
-            while(fillCount != 2) {
-                //3a: Generate a random number between 1 and 8
-                int tempTeam = (int) (Math.random() * (8)) + 1;
+    }
 
+    public static int requestNumberOfTeams() {  //Asks for input and returns it
+        Scanner input = new Scanner(System.in);
+        System.out.print("How many teams are competing?(Must be an even number) ");
+        return input.nextInt();
+    }
 
-                //3b: Check if number has already been chosen
-                //3ba: if not, add number to pair and add number to database of chosen teams, else generate another number
-                boolean numberAlreadyChosen = false;
-                for (int i = 0; i <= teamsChosen.length - 1; i++) {
-                    if(tempTeam == teamsChosen[i]) {
-                        numberAlreadyChosen = true;
-                    }
-                }
+    public static void printTeamPairs(int[] teamsChosen, int numberOfTeams) { //Separates list of all chosen teams into pairs of two, printing out those pairs as it transverses through the array
+        for(int i = 0; i < numberOfTeams; i++) {
+            int[] temp = new int[2];
+            temp[0] = teamsChosen[i];
+            temp[1] = teamsChosen[i + 1];
 
+            System.out.println(Arrays.toString(temp));
+            i = i + 1;
+        }
+    }
 
-                if (!(numberAlreadyChosen)) {
-                    if(pairCount == 1) {
-                        team1[fillCount] = tempTeam;
-                    }
-                    else if(pairCount == 2) {
-                        team2[fillCount] = tempTeam;
-                    }
-                    else if(pairCount == 3) {
-                        team3[fillCount] = tempTeam;
-                    }
-                    else {
-                        team4[fillCount] = tempTeam;
-                    }
-                    fillCount = fillCount + 1;
-                    teamsChosen[teamCountChosen] = tempTeam;
-                    teamCountChosen = teamCountChosen + 1;
-
-                }
-
-
+    public static boolean checkIfInList(int numberToCheck, int[] teamList) {  //Checks if the randomly picked team has already been chosen and returns boolean result
+        boolean numberAlreadyChosen = false;
+        for (int i = 0; i <= teamList.length - 1; i++) {
+            if(numberToCheck == teamList[i]) {
+                numberAlreadyChosen = true;
             }
+        }
 
-            pairCount = pairCount + 1;
+        return numberAlreadyChosen;
+    }
 
+    public static int[] fillTeamArray(int[] teamsChosen, int numberOfTeams) { //Given a list to fill and a number of teams it needs to match, will fill the list with a distinct combination of those teams
+        int tempTeam = (int) (Math.random() * (numberOfTeams)) + 1;  //Generates a random number between 1 and the number of teams
+        boolean numberAlreadyChosen = checkIfInList(tempTeam, teamsChosen); //Calls on checkIfInList to determine if number has already been chosen
 
-
-
-
+        if (!(numberAlreadyChosen)) {    //If it has not already been chosen, add value to list of chosen teams and increment onto the next value in the list
+            teamsChosen[teamCountChosen] = tempTeam;
+            teamCountChosen = teamCountChosen + 1;
 
         }
 
-
-        //Step 4: Print team pairings
-
-        System.out.println(Arrays.toString(team1));
-        System.out.println(Arrays.toString(team2));
-        System.out.println(Arrays.toString(team3));
-        System.out.println(Arrays.toString(team4));
-        System.out.println();
-
+        return teamsChosen;  //Returns list back to main to check for completion, giving filled array in the process
 
     }
 }
