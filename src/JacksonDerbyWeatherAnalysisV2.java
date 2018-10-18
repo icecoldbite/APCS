@@ -99,7 +99,7 @@ public class JacksonDerbyWeatherAnalysisV2 {
                 first = tempLog[i];
             }
 
-            else if (tempLog[i] < second && tempLog[i] != first) {  // If there is a value between first and second then update second
+            else if (tempLog[i] > second && tempLog[i] != first) {  // If there is a value between first and second then update second
                 second = tempLog[i];
             }
         }

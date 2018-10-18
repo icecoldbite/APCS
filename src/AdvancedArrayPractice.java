@@ -2,8 +2,9 @@ import java.util.Arrays;
 
 public class AdvancedArrayPractice {
     public static void main(String[] args) {
-
-        System.out.println(mostFrequentDigit(10));
+        for(int i = 0; i < 100; i ++) {
+            System.out.println(mostFrequentDigit(100*i+235934));
+        }
     }
 
     public static int mostFrequentDigit(int number) {
@@ -17,9 +18,7 @@ public class AdvancedArrayPractice {
 
         }
 
-        Arrays.sort(numArray);
-
-        System.out.println(Arrays.toString(numArray));  //Sorts in numerical order and prints it
+        Arrays.sort(numArray);    //Sorts in numerical order
 
         int mostCommonDigit = -1;
         int currentNumberOfTimesAppeared = 0;  //Initializes the variables needed in order to keep track of the most common digit
