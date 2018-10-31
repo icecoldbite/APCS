@@ -2,9 +2,7 @@ import java.util.Arrays;
 
 public class AdvancedArrayPractice {
     public static void main(String[] args) {
-        for(int i = 0; i < 100; i ++) {
-            System.out.println(mostFrequentDigit(100*i+235934));
-        }
+
     }
 
     public static int mostFrequentDigit(int number) {
