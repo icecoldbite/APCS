@@ -1,18 +1,16 @@
 import java.io.*;
 import java.util.Scanner;
-import java.nio.file.Files;
+import java.io.PrintStream;
 
 public class JacksonDerbyPersonalityTest {
-    public static void main(String args[]) throws FileNotFoundException, UnsupportedEncodingException {
+    public static void main(String args[]) throws FileNotFoundException {
         //Step 1: Prompt for input file until given a valid file
-        Scanner input = new Scanner(requestFile());
+        Scanner input = new Scanner(requestFile()); //Creates a scanner using requested file name
 
-        //Step 2: Request an output file to which to print the results(use system.out for now)
-        String outputName = "output";
-        createFile(Path path, )
+        //Step 2: Request an output file to which to print the results
+        PrintStream writer = new PrintStream(requestOutput()); //Creates a PrintStream to output to the requested file name, creating the file if it does not exist
 
-
-        while(input.hasNextLine()) {
+        while(input.hasNextLine()) { //While there is a survey to process
 
             //Step 3: Scan input for name and print name to output
             writer.println(input.nextLine());
@@ -20,7 +18,7 @@ public class JacksonDerbyPersonalityTest {
             //Step 4: Go through input and store the number of A answers for each of the four categories and the number of B answers for each of the four categories
             int[] aAnswers = new int[4];  //Creates two arrays to store the a and b answers, with spots for each of the four categories
             int[] bAnswers = new int[4];
-            sortAnswers(aAnswers, bAnswers, input);
+            sortAnswers(aAnswers, bAnswers, input); //Modifies arrays to match number of a and b answers
 
 
             //Step 5: Print these values to output formatted to match example
@@ -37,19 +35,11 @@ public class JacksonDerbyPersonalityTest {
             //Step 7: Based on percentage, print to output the letter corresponding to their personality type
             writer.println(createType(percentageOne, percentageTwo, percentageThree, percentageFour));
 
-
-            //Step 8: Repeat steps 3-7 until there are no more names to process
-
         }
-
-
-
-
-
 
     }
 
-    public static void sortAnswers(int[] aAnswers, int[] bAnswers, Scanner input) {
+    public static void sortAnswers(int[] aAnswers, int[] bAnswers, Scanner input) { //Sums up all a and b answers, modifying their corresponding arrays in the process
         String answers = input.nextLine();  //Creates a string to be read though out of the given answers
 
         for(int i = 0; i < 10; i++) {  //For each chunk of 7 letters, process them in the given sequence and add them to the arrays accordingly
@@ -108,10 +98,10 @@ public class JacksonDerbyPersonalityTest {
     }
 
     public static int calculatePercent(int[] aAnswers, int[] bAnswers, int index) {
-        return (int)((bAnswers[index] / ((double)bAnswers[index] + aAnswers[index])) * 100);
+        return (int)((bAnswers[index] / ((double)bAnswers[index] + aAnswers[index])) * 100); //Returns percentage of b answers to total answers as an int
     }
 
-    public static String createType(int percentageOne, int percentageTwo, int percentageThree, int percentageFour) {
+    public static String createType(int percentageOne, int percentageTwo, int percentageThree, int percentageFour) { //Goes through each percentage, assigning a letter tot hat person based on the values of those specific categories
         String type = "";
 
         if (percentageOne > 50) {
@@ -157,45 +147,39 @@ public class JacksonDerbyPersonalityTest {
         return type;
     }
 
-    public static void printPercentage(int percentageOne, int percentageTwo, int percentageThree, int percentageFour, PrintWriter writer) {
+    public static void printPercentage(int percentageOne, int percentageTwo, int percentageThree, int percentageFour, PrintStream writer) { //Prints the percentages in the proper format
         writer.print("[" + percentageOne + "%, ");
         writer.print(percentageTwo + "%, ");
         writer.print(percentageThree + "%, ");
         writer.print(percentageFour + "%] = ");
     }
 
-    public static File requestFile() throws FileNotFoundException {
-        Scanner input = new Scanner(System.in);
-        boolean exists = false;
+    public static File requestFile(){   //Finds the name of the input file
+        Scanner input = new Scanner(System.in); //Initializes needed scanner
+        boolean exists;
 
-
-        System.out.print("Input File Name: ");
+        System.out.print("Input File Name: "); //Asks for file name and creates a file to match
         String fileName = input.next();
         File inputFile = new File(fileName);
-        exists = inputFile.exists();
+        exists = inputFile.exists(); //Checks to see if file exists
 
-        while(!exists) {
+        while(!exists) { //If the file did not exist, continue prompting for file until they give a value that does fit
             System.out.print("File not found. Try again: ");
             fileName = input.next();
             inputFile = new File(fileName);
             exists = inputFile.exists();
         }
 
-        input.close();
+
         return inputFile;
 
     }
 
-    public static String requestOutputName() {
-        Scanner input = new Scanner(System.in);
-        System.out.print("Output file name: ");
-        String outputName = input.next();
-        return outputName;
-
+    public static String requestOutput() { //Requests the name of the output file to be created and printed to
+        System.out.print("Output name: ");
+        Scanner fileNameInput = new Scanner(System.in);
+        return fileNameInput.next();
     }
-
-
-
 
 
 }
