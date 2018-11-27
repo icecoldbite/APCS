@@ -1,5 +1,3 @@
-package Ch8Classes;
-
 public class PointV1 {
     public int x; //States fields for point class
     public int y;
