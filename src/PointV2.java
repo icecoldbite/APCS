@@ -1,4 +1,4 @@
-public class PointV1 {
+public class PointV2 {
     public int x; //States fields for point class
     public int y;
 
@@ -12,11 +12,15 @@ public class PointV1 {
         y = y + dy;
     }
 
-    public double distance(PointV1 other) {
+    public double distance(PointV2 other) {
         int dx = x - other.x;
         int dy = y - other.y;
         return Math.sqrt(dx * dx + dy * dy);
 
+    }
+
+    public String toString() {
+        return "(" + x + ", " + y + ")";
     }
 
 
