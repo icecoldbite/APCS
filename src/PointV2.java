@@ -1,6 +1,11 @@
 public class PointV2 {
-    public int x; //States fields for point class
-    public int y;
+    int x; //States fields for point class
+    int y;
+
+    public PointV2(int initialX, int initalY) {
+        x = initialX;
+        y = initalY;
+    }
 
     public void setLocation(int newX, int newY) {
         x = newX;
