@@ -9,11 +9,11 @@ public class JacksonDerbyClassroom {
     private String subject;
     private boolean hasSmartboard;
 
-    public JacksonDerbyClassroom(String teacherName, int numberOfStudents, int numberOfDesks, boolean enoughDesks, boolean hasSupplies, double width, double length, String subject, boolean hasSmartboard) {
+    public JacksonDerbyClassroom(String teacherName, int numberOfStudents, int numberOfDesks, boolean hasSupplies, double width, double length, String subject, boolean hasSmartboard) {
         this.teacherName = teacherName;
         this.numberOfStudents = numberOfStudents;
         this.numberOfDesks = numberOfDesks;
-        this.enoughDesks = enoughDesks;
+        this.enoughDesks = (numberOfDesks >= numberOfStudents);
         this.hasSupplies = hasSupplies;
         this.width = width;
         this.length = length;
@@ -36,6 +36,7 @@ public class JacksonDerbyClassroom {
 
     public void setNumberOfStudents(int numberOfStudents) {
         this.numberOfStudents = numberOfStudents;
+        this.enoughDesks = (numberOfDesks >= numberOfStudents);
     }
 
     public int getNumberOfDesks() {
@@ -44,14 +45,11 @@ public class JacksonDerbyClassroom {
 
     public void setNumberOfDesks(int numberOfDesks) {
         this.numberOfDesks = numberOfDesks;
+        this.enoughDesks = (numberOfDesks >= numberOfStudents);
     }
 
     public boolean isEnoughDesks() {
         return enoughDesks;
-    }
-
-    public void setEnoughDesks(boolean enoughDesks) {
-        this.enoughDesks = enoughDesks;
     }
 
     public boolean isHasSupplies() {
@@ -96,8 +94,7 @@ public class JacksonDerbyClassroom {
 
     @Override
     public String toString() {
-        return "The teacher name is " + teacherName + ", The number of students is " + numberOfStudents + ", The number of desks: " + numberOfDesks + ", The classroom has enough desks for the students is " +
-                enoughDesks + ", The classroom has enough supplies is " + hasSupplies + ", The width of the classroom is " + width + ", The length of the classroom is " + length + ", The subject taught" + subject +
+        return "The teacher name is " + teacherName + ", The number of desks: " + numberOfDesks + ", The classroom has enough supplies is " + hasSupplies + ", The width of the classroom is " + width + ", The length of the classroom is " + length + ", The subject taught is " + subject +
                 ", The classroom has a smartboard is " + hasSmartboard;
     }
 }

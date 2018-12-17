@@ -11,6 +11,19 @@ public class JacksonDerbyPenguin {
     private boolean isInjured;
     private boolean canFly =  false;
 
+    public JacksonDerbyPenguin(String species, double height, double weight, int age, boolean isParent, char gender, boolean isHungry, boolean isSick, boolean isInjured, String location) {
+        this.species = species;
+        this.height = height;
+        this.weight = weight;
+        this.age = age;
+        this.isParent = isParent;
+        this.gender = gender;
+        this.isHungry = isHungry;
+        this.isSick = isSick;
+        this.isInjured = isInjured;
+        this.location = location;
+    }
+
     public String getSpecies() {
         return species;
     }
@@ -99,18 +112,9 @@ public class JacksonDerbyPenguin {
         this.canFly = canFly;
     }
 
-    public JacksonDerbyPenguin(String species, double height, double weight, int age, boolean isParent, char gender, boolean isHungry, boolean isSick, boolean isInjured) {
-        this.species = species;
-        this.height = height;
-        this.weight = weight;
-        this.age = age;
-        this.isParent = isParent;
-        this.gender = gender;
-        this.isHungry = isHungry;
-        this.isSick = isSick;
-        this.isInjured = isInjured;
+    @Override
+    public String toString() {
+        return "The penguin's species is " + species + ", its height is " + height + ", and its weight is " + weight + ". It is " + age + " years old, and its gender is " + gender +
+                ". It lives in the " + location;
     }
-
-
-
 }
