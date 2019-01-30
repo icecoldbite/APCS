@@ -2,13 +2,11 @@ package CH10_ArrayList;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Scanner;
+import java.util.*;
 
 public class ArrayListExercise {
     public static void main(String[] args) throws FileNotFoundException {
-        File inputFile = new File("G:\\My Drive\\APCS\\src\\CH10_ArrayList\\data");
+        File inputFile = new File("C:\\Users\\jderby\\APCS\\src\\CH10_ArrayList\\data");
         Scanner input = new Scanner(inputFile);  //Creates a Scanner to read the data file
 
         ArrayList<String> wordList = new ArrayList<>();
@@ -17,6 +15,8 @@ public class ArrayListExercise {
         }
 
         System.out.println(wordList);  //Prints list of all words
+
+        /*
 
         Collections.reverse(wordList); //Reverses list of all words
 
@@ -38,6 +38,26 @@ public class ArrayListExercise {
             }
         }
 
-        System.out.println(wordList); //Prints out the reversed list with all plurals removed
+        System.out.println(wordList); //Prints out the reversed list with all plurals removed */
+
+        ArrayList<Integer> list1 = new ArrayList<>(Arrays.asList(1, 4, 8, 9, 11, 15, 17, 28, 41, 59));
+        ArrayList<Integer> list2 = new ArrayList<>(Arrays.asList(4, 7, 11, 17, 19, 20, 23, 28, 37, 59, 81));
+        ArrayList<Integer> list3 = intersect(list1,list2);
+        System.out.println(list3);
+
+
     }
+
+    public static ArrayList<Integer> intersect(ArrayList<Integer> list1, ArrayList<Integer> list2) {
+        ArrayList<Integer> commonNumbers = new ArrayList<>();
+        for(int i = 0; i < list1.size(); i++) {
+            if(list2.contains(list1.get(i))) {
+                commonNumbers.add(list1.get(i));
+            }
+        }
+
+        return commonNumbers;
+
+    }
+
 }
