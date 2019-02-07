@@ -26,6 +26,9 @@ public class Vocabulary1 {
 
     public static ArrayList<String> getWords(Scanner file) { //Given a file, will return a sorted ArrayList removed of duplicates
         ArrayList<String> words = new ArrayList<>();
+
+        file.useDelimiter("[^a-zA-Z']");
+
         while(file.hasNext()) {
             words.add(file.next().toLowerCase());    //Creates an ArrayList and populates it with all words from the file(in lowercase)
         }
