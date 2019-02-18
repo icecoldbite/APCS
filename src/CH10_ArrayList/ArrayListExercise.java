@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class ArrayListExercise {
     public static void main(String[] args) throws FileNotFoundException {
-        File inputFile = new File("C:\\Users\\JPD\\IdeaProjects\\APCS\\src\\CH10_ArrayList\\data");
+        File inputFile = new File("G:\\My Drive\\APCS\\src\\CH10_ArrayList\\data");
         Scanner input = new Scanner(inputFile);  //Creates a Scanner to read the data file
 
         ArrayList<String> wordList = new ArrayList<>();
