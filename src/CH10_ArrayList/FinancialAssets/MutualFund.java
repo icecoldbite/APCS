@@ -12,4 +12,10 @@ public class MutualFund extends ShareAsset {
     public double getMarketValue() {
         return totalShares * getCurrentPrice();
     }
+
+    public void purchase(int shares, double pricePerShare) {
+        totalShares += shares;
+        addCost(shares * pricePerShare);
+    }
+
 }

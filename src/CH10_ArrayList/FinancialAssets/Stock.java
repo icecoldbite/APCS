@@ -13,8 +13,8 @@ public class Stock extends ShareAsset{
         return totalShares * getCurrentPrice();
     }
 
-    public void purchase(int shares, double pricePerStock) {
+    public void purchase(int shares, double pricePerShare) {
         totalShares += shares;
-        addCost(shares * pricePerStock);
+        addCost(shares * pricePerShare);
     }
 }

@@ -6,4 +6,10 @@ public class DividendStock extends Stock {
     public DividendStock(String symbol, double currentPrice, int totalShares){
         super(symbol, currentPrice, totalShares);
     }
+
+    public double getMarketValue() {
+        return super.getMarketValue() + dividends;
+    }
+
+
 }
