@@ -6,6 +6,7 @@ public class RecursionPractice {
     public static void main(String[] args) {
         System.out.println(i(5));
         stars(7);
+        System.out.println(pow(3, 4));
 
     }
 
@@ -32,6 +33,16 @@ public class RecursionPractice {
         else {
             System.out.print("*");
             stars(numOfStars-1);
+        }
+    }
+
+    public static int pow(int base, int power) {
+        if(power == 0) {
+            return 1;
+        }
+
+        else {
+            return base * pow(base, power - 1);
         }
     }
 }
