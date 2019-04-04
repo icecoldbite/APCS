@@ -4,8 +4,6 @@ package CH12Recursion;
 public class RecursionPractice {
 
     public static void main(String[] args) {
-        System.out.println(i(5));
-        stars(7);
         System.out.println(pow(3, 4));
 
     }

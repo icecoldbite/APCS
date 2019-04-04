@@ -2,11 +2,10 @@ package CH10_ArrayList;
 
 public class MyLawFirmV1 {
     public static void main(String[] args) {
-        EmployeeV1[] myEmployees = new EmployeeV1[]{new LawyerV1("Gabby", 5),
-                new SecretaryV1("Charlie", 3),
+        EmployeeV1[] myEmployees = new EmployeeV1[]{new SecretaryV1("Charlie", 3),
                 new MarketerV1("Ahmed", 8),
-                new LegalSecretaryV1("Jackson", 1),
-                new LawyerV1("Rachel")};
+                new LegalSecretaryV1("Jackson", 1)};
+
 
         printInfo(myEmployees);
 
