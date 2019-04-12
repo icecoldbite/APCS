@@ -1,7 +1,5 @@
 package SortingAlgorithms;
 
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
-
 import java.util.Arrays;
 
 public class MergeSortPractice {
@@ -35,8 +33,16 @@ public class MergeSortPractice {
         int i2 = 0;
 
         for(int i = 0; i < array.length; i++) {
-            if(i2 >= right.length || (i1 < left.length && i1< i2)) {
+            if(i2 >= right.length || (i1 < left.length && left[i1] < right[i2])) {
+                array[i] = left[i1];
+                i1++;
 
+
+            }
+
+            else {
+                array[i] = right[i2];
+                i2++;
             }
         }
 
