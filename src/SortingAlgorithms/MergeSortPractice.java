@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class MergeSortPractice {
     public static void main(String[] args) {
-        int [] numArray = { 101, 59, 65, 32};
+        int [] numArray = { 101, 59, 65, 32, 45, 12};
         recursiveMergeSort(numArray);
         System.out.println(Arrays.toString(numArray));
 
@@ -36,7 +36,6 @@ public class MergeSortPractice {
             if(i2 >= right.length || (i1 < left.length && left[i1] < right[i2])) {
                 array[i] = left[i1];
                 i1++;
-
 
             }
 
